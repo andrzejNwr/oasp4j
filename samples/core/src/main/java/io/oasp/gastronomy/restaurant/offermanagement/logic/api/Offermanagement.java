@@ -1,5 +1,10 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api;
 
+import java.sql.Blob;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
@@ -13,18 +18,31 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
-
-import java.sql.Blob;
-import java.util.List;
-
-import javax.validation.Valid;
 
 /**
  * Interface for OfferManagement.
  *
  */
 public interface Offermanagement {
+
+  SpecialEto findSpecial(Long id);
+
+  // wszystkie Speciale
+  List<SpecialEto> findAllSpecials();
+
+  // tylko aktywne Speciale
+  List<SpecialEto> findActiveSpecials(SpecialSearchCriteriaTo criteria);
+
+  // tylko aktywne Speciale na rozwijanej dynamicznie
+  // !!! jeszcze nie zaimplement.w SpecialDao !!!
+  // PaginatedListTo<SpecialEto> findActiveSpecials(SpecialSearchCriteriaTo criteria);
+
+  void deleteSpecial(Long specialId);
+
+  SpecialEto saveSpecial(@Valid SpecialEto special);
 
   /**
    * Gets an {@link OfferEto} using its entity identifier.
@@ -33,6 +51,7 @@ public interface Offermanagement {
    * @return the requested {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Offer} or {@code null} if no
    *         such {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Offer} exists.
    */
+
   OfferEto findOffer(Long id);
 
   /**

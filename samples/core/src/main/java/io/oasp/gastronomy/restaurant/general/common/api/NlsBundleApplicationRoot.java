@@ -62,6 +62,11 @@ public interface NlsBundleApplicationRoot extends NlsBundle {
   NlsMessage errorOfferEmpty();
 
   /**
+   * @return
+   */
+  NlsMessage errorSpecialEmpty();
+
+  /**
    * @see io.oasp.gastronomy.restaurant.salesmanagement.common.api.exception.ChangeTableIllegalStateCombinationException
    *
    * @param orderId The id of the order which is going to be transfered to the targetTable
